@@ -4,7 +4,7 @@ import Line from "../../assets/Line.svg";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 z-50 shadow ">
+    <header className="sticky top-0  z-50 shadow ">
       <nav className="border-gray-200 bg-csec px-4 py-2.5 lg:px-6">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
           <Link
