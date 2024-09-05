@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -12,11 +9,12 @@ export default {
         csec: "#68B2A0",
         cter: "#CDE0C9",
         clight: "#E0ECDE",
-        wlight: "#FFDBAC",
-        wter: "#F1C27D",
-        wsec: "#E0AC69",
-        wpri: "#C68642",
-        wdark: "#8D5524",
+        wlight: "#F1C27D",
+        wter: "#E0AC69",
+        wsec: "#C68642",
+        wpri: "#8D5524",
+        wdark: "#78350F",
+        whover: "#784625",
       },
       fontFamily: {
         grotesk: "Space Grotesk",
@@ -24,8 +22,6 @@ export default {
         poppins: "Poppins",
         mono: "Space Mono",
       },
-    },
-  },
-
-  "plugins": ["prettier-plugin-tailwindcss"],
+    }
+  }
 };
