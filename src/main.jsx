@@ -15,6 +15,9 @@ import {
   SignOut,
   Otp,
 } from "./components/Index.js";
+=======
+import Layout from "./Layout";
+import Dashboard from "./components/Dashboard/Dashboard.jsx";
 
 import Layout from "./Layout";
 import Testi from "./components/Testimonials/Testi.jsx";
@@ -46,10 +49,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route path="/" element={<Layout />}>
         <Route path="" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="events" element={<Events />} />
-        <Route path="donate" element={<Donate />} />
-        <Route path="alumini" element={<Alumini />} />
-        <Route path="jobs" element={<JobPortal />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/alumini" element={<Alumini />} />
+        <Route path="/jobs" element={<JobPortal />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   </BrowserRouter>,
