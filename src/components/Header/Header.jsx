@@ -1,95 +1,82 @@
-import { Link, NavLink } from "react-router-dom";
-import GOG from "../../assets/Government_Of_Gujarat_Seal.svg";
-import Line from "../../assets/Line.svg";
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import './Header.css';
 
-export default function Header() {
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <header className="sticky top-0  z-50 shadow ">
-      <nav className="border-gray-200 bg-csec px-4 py-2.5 lg:px-6">
-        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between">
-          <Link
-            to="/"
-            className="flex items-center justify-evenly font-poppins text-xl font-black"
-          >
-            <div className="flex items-center justify-evenly gap-2">
-              <img src={GOG} className="h-10" alt="Logo" />
-              <img src={Line} className="h-12 w-0.5" alt="Line" />
-              <p>Govt. of Gujarat</p>
+    <nav className="navbar">
+      <div className="logo"><img src="src\assets\Logo.png" alt="" /></div>
+
+      {/* Hamburger menu and nav links */}
+      <div className={`nav-links ${isOpen ? 'open' : ''}`}>
+        <NavLink exact to="/" activeClassName="active">
+          Home
+        </NavLink>
+        <NavLink to="/about" activeClassName="active">
+          About Us
+        </NavLink>
+        <NavLink to="/dirportal" activeClassName="active">
+          Alumni Connect
+        </NavLink>
+        <NavLink to="jobportal" activeClassName="active">
+          Career Portal
+        </NavLink>
+        <NavLink to="/social" activeClassName="active">
+          Social Hub
+        </NavLink>
+        <NavLink to="/donate" activeClassName="active">
+          Donate
+        </NavLink>
+
+        {/* Dropdown Menu */}
+        <div className="dropdown">
+          <span className="dropdown-title" onClick={toggleDropdown}>
+            More
+          </span>
+          {isDropdownOpen && (
+            <div className="dropdown-content">
+              <Link to="events">Events</Link>
+              <Link to="clubs">Clubs</Link>
+              <Link to="testimonial">Testimonials</Link>
+              <Link to="/contact">Contact Us</Link>
+              <Link to="/faq">FAQ</Link>
             </div>
-          </Link>
-          <div className="flex items-center font-grotesk font-black lg:order-2">
-            <Link
-              to="#"
-              className="mr-2 rounded-lg px-2 py-2 text-clight hover:bg-cpri focus:outline-none focus:ring-2 focus:ring-cyan-900"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="#"
-              className="mr-2 rounded-lg bg-cpri px-2 py-2 text-clight hover:bg-cdark focus:outline-none focus:ring-2 focus:ring-cyan-900"
-            >
-              Sign Up
-            </Link>
-          </div>
-          <div
-            className="hidden w-full items-center justify-between font-grotesk text-xl font-black lg:order-1 lg:flex lg:w-auto"
-            id="mobile-menu-2"
-          >
-            <ul className="mt-4 flex flex-col font-black lg:mt-0 lg:flex-row lg:space-x-8">
-              <li>
-                <NavLink
-                  to="/"
-                  className={({ isActive }) =>
-                    `block py-2 pl-3 pr-4 duration-200 ${isActive ? "text-cdark" : "text-clight"} border-b border-gray-100 hover:bg-gray-50 hover:text-cpri lg:border-0 lg:p-0 lg:hover:bg-transparent`
-                  }
-                >
-                  About
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/events"
-                  className={({ isActive }) =>
-                    `block py-2 pl-3 pr-4 duration-200 ${isActive ? "text-cdark" : "text-clight"} border-b border-gray-100 hover:bg-gray-50 hover:text-cpri lg:border-0 lg:p-0 lg:hover:bg-transparent`
-                  }
-                >
-                  Events
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/donate"
-                  className={({ isActive }) =>
-                    `block py-2 pl-3 pr-4 duration-200 ${isActive ? "text-cdark" : "text-clight"} border-b border-gray-100 hover:bg-gray-50 hover:text-cpri lg:border-0 lg:p-0 lg:hover:bg-transparent`
-                  }
-                >
-                  Donate
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/alumdir"
-                  className={({ isActive }) =>
-                    `block py-2 pl-3 pr-4 duration-200 ${isActive ? "text-cdark" : "text-clight"} border-b border-gray-100 hover:bg-gray-50 hover:text-cpri lg:border-0 lg:p-0 lg:hover:bg-transparent`
-                  }
-                >
-                  Alumini
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/jobportal"
-                  className={({ isActive }) =>
-                    `block py-2 pl-3 pr-4 duration-200 ${isActive ? "text-cdark" : "text-clight"} border-b border-gray-100 hover:bg-gray-50 hover:text-cpri lg:border-0 lg:p-0 lg:hover:bg-transparent`
-                  }
-                >
-                  Job Portal
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+          )}
         </div>
-      </nav>
-    </header>
+
+        {/* Signup and Login buttons for mobile view */}
+        <div className="auth-buttons mobile-auth-buttons">
+          <button className="signup-btn">Sign Up</button>
+          <button className="login-btn"> <Link to="signin">Login</Link></button>
+        </div>
+      </div>
+
+      {/* Signup and Login buttons for desktop view */}
+      <div className="auth-buttons desktop-auth-buttons">
+        <button className="signup-btn">Sign Up</button>
+        <button className="login-btn">
+          <Link to="signin">Login</Link></button>
+      </div>
+
+      {/* Hamburger icon */}
+      <div className="hamburger" onClick={toggleMenu}>
+        <span className="line"></span>
+        <span className="line"></span>
+        <span className="line"></span>
+      </div>
+    </nav>
   );
-}
+};
+
+export default Header;
